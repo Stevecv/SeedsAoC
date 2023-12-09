@@ -15,4 +15,16 @@ public class FullMap {
         }
         return destination;
     }
+
+    public Long convertReverse(Long source) {
+        for (String entry: fullMap.split(";")) {
+            Map map = new Map(entry);
+
+            if (map.destination <= source && map.destination+map.length >= source) {
+                long change = source-map.destination;
+                return map.source+change;
+            }
+        }
+        return source;
+    }
 }

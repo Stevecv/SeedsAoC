@@ -295,6 +295,9 @@ public class PuzzleInput {
             String tempLine = line;
             if (line.startsWith("seeds")) {
                 tempLine = line.replace("seeds: ", "");
+
+                tempLine =  getCompiledSeeds(tempLine);
+
                 puzzleInput.put("seeds", tempLine);
                 continue;
             }
@@ -306,5 +309,22 @@ public class PuzzleInput {
                 puzzleInput.put(mapType, puzzleInput.get(mapType) + ";" + line);
             }
         }
+    }
+
+    private static String getCompiledSeeds(String tempLine) {
+        char[] seedCharacters = tempLine.toCharArray();
+        StringBuilder compiledSeeds = new StringBuilder();
+        boolean toggle = true;
+        for (char seedChar: seedCharacters) {
+            if (seedChar == ' ') {
+                toggle = !toggle;
+                if (toggle) {
+                    compiledSeeds.append(';');
+                    continue;
+                }
+            }
+            compiledSeeds.append(seedChar);
+        }
+        return compiledSeeds.toString();
     }
 }
