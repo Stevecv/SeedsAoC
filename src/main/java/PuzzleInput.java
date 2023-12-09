@@ -291,7 +291,7 @@ public class PuzzleInput {
 
     public PuzzleInput() {
         String mapType = "";
-        for (String line : testInput.split("\n")) {
+        for (String line : rawInput.split("\n")) {
             String tempLine = line;
             if (line.startsWith("seeds")) {
                 tempLine = line.replace("seeds: ", "");
